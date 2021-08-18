@@ -7,17 +7,17 @@ const grid = Array(GRID_SIZE)
 
 const validMoveFormat = /^[1-3],[1-3]$/
 const isMoveFormatValid = (move) => validMoveFormat.test(move)
-const isSquareTaken = (x, y) => grid[x - 1][y - 1] !== " "
-
-let playerToken = "x"
-const alternatePlayer = (token) => (token === "x" ? "o" : "x")
+const isSquareTaken = (x, y) => grid[x][y] !== " "
 
 let winner = null
+let currentPlayer = "x"
+const alternatePlayer = (token) => (token === "x" ? "o" : "x")
+
 
 while (!winner) {
-  const move = readline.question(`Next move, ${playerToken}: `)
-  const x = move[0]
-  const y = move[2]
+  const move = readline.question(`Next move, ${currentPlayer}: `)
+  const x = move[0] - 1
+  const y = move[2] - 1
 
   if (!isMoveFormatValid(move)) {
     console.log(
@@ -27,11 +27,11 @@ while (!winner) {
   }
 
   if (isSquareTaken(x, y)) {
-    console.log(`The square at [${x},${y}] is taken`)
+    console.log(`The square at [${x + 1},${y + 1}] is taken`)
     continue
   }
 
-  grid[x - 1][y - 1] = playerToken
   grid.forEach((row) => console.log(row))
   playerToken = alternatePlayer(playerToken)
+  grid[x][y] = currentPlayer
 }
