@@ -8,6 +8,7 @@ const grid = Array(GRID_SIZE)
 const validMoveFormat = /^[1-3],[1-3]$/
 const isMoveFormatValid = (move) => validMoveFormat.test(move)
 const isSquareTaken = (x, y) => grid[x][y] !== " "
+const printBoard = () => grid.forEach((row) => console.log(row))
 
 let winner = null
 let currentPlayer = "x"
@@ -31,7 +32,7 @@ while (!winner) {
     continue
   }
 
-  grid.forEach((row) => console.log(row))
   playerToken = alternatePlayer(playerToken)
   grid[x][y] = currentPlayer
+  printBoard()
 }
