@@ -8,3 +8,6 @@ A simple Node based CLI tic-tac-toe.
 2. Start game with `node play.js`.
 3. Play moves in the format `x,y` to draw an x/o at the input coordinates.
 
+## Tests
+
+Run tests with `npm test`.

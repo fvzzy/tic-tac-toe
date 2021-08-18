@@ -5,7 +5,14 @@
   "author": "Farhan Rahman",
   "license": "MIT",
   "main": "play.js",
+  "scripts": {
+    "test": "jest"
+  },
   "dependencies": {
     "readline-sync": "^1.4.10"
+  },
+  "devDependencies": {
+    "@types/jest": "^27.0.1",
+    "jest": "^27.0.6"
   }
 }
