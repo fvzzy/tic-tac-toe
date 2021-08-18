@@ -5,7 +5,7 @@ const grid = Array(GRID_SIZE)
   .fill(Array(GRID_SIZE).fill(" "))
   .map((row) => row.slice())
 
-const validMoveFormat = /^[1-3],[1-3]$/
+const validMoveFormat = new RegExp(`^[1-${GRID_SIZE}],[1-${GRID_SIZE}]$`)
 const isMoveFormatValid = (move) => validMoveFormat.test(move)
 const isSquareTaken = (x, y) => grid[x][y] !== " "
 const printBoard = () => grid.forEach((row) => console.log(row))
