@@ -18,8 +18,13 @@ const alternatePlayer = (token) => (token === "x" ? "o" : "x")
 
 const row = (x) => grid[x]
 const column = (y) => grid.map((row) => row[y])
+const isMoveOnDiagonal = (x, y) => x === y || x + y === GRID_SIZE - 1
+const ltrDiagonal = grid.map((row, rowIdx) => row[rowIdx])
+const rtlDiagonal = grid.map((row, rowIdx) => row[GRID_SIZE - 1 - rowIdx])
+const diagonal = (x, y) => (x === y ? ltrDiagonal : rtlDiagonal)
+
 const complete = (coords) => coords.every((c) => c === currentPlayer)
-const moveFillsDiagonal = (x, y) => false
+const moveFillsDiagonal = (x, y) => isMoveOnDiagonal && complete(diagonal(x, y))
 const moveFillsRow = (x) => complete(row(x))
 const moveFillsColumn = (y) => complete(column(y))
 
