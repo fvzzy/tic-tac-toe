@@ -4,9 +4,7 @@ const {
   alternatePlayer,
   isMoveFormatValid,
   isSquareTaken,
-  moveFillsDiagonal,
-  moveFillsRow,
-  moveFillsColumn
+  moveWinsGame
 } = require("./lib/moves")
 
 const GRID_SIZE = 3
@@ -36,11 +34,7 @@ while (!winner) {
   grid[x][y] = currentPlayer
   printGrid(grid)
 
-  if (
-    moveFillsDiagonal(grid, currentPlayer, x, y) ||
-    moveFillsRow(grid, currentPlayer, x) ||
-    moveFillsColumn(grid, currentPlayer, y)
-  ) {
+  if (moveWinsGame(grid, currentPlayer, x, y)) {
     winner = currentPlayer
   } else {
     currentPlayer = alternatePlayer(currentPlayer)
