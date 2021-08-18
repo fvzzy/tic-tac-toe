@@ -5,8 +5,8 @@ const grid = Array(GRID_SIZE)
   .fill(Array(GRID_SIZE).fill(" "))
   .map((row) => row.slice())
 
-const printBoard = () => grid.forEach((row) => console.log(row))
-printBoard()
+const printGrid = () => grid.forEach((row) => console.log(row))
+printGrid()
 
 const validMoveFormat = new RegExp(`^[1-${GRID_SIZE}],[1-${GRID_SIZE}]$`)
 const isMoveFormatValid = (move) => validMoveFormat.test(move)
@@ -41,7 +41,7 @@ while (!winner) {
   }
 
   grid[x][y] = currentPlayer
-  printBoard()
+  printGrid()
 
   if (moveFillsDiagonal(x, y) || moveFillsRow(x) || moveFillsColumn(y)) {
     winner = currentPlayer
