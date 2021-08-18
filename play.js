@@ -14,6 +14,12 @@ let winner = null
 let currentPlayer = "x"
 const alternatePlayer = (token) => (token === "x" ? "o" : "x")
 
+const row = (x) => grid[x]
+const column = (y) => grid.map((row) => row[y])
+const complete = (coords) => coords.every((c) => c === currentPlayer)
+const moveFillsDiagonal = (x, y) => false
+const moveFillsRow = (x) => complete(row(x))
+const moveFillsColumn = (y) => complete(column(y))
 
 while (!winner) {
   const move = readline.question(`Next move, ${currentPlayer}: `)
@@ -32,7 +38,15 @@ while (!winner) {
     continue
   }
 
-  playerToken = alternatePlayer(playerToken)
   grid[x][y] = currentPlayer
   printBoard()
+
+  if (moveFillsDiagonal(x, y) || moveFillsRow(x) || moveFillsColumn(y)) {
+    winner = currentPlayer
+  } else {
+    currentPlayer = alternatePlayer(currentPlayer)
+  }
 }
+
+console.log(`${currentPlayer} wins!`)
+process.exit(0)
