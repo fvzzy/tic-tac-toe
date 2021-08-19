@@ -16,8 +16,6 @@ let currentPlayer = "x"
 
 while (!winner) {
   const move = readline.question(`Next move, ${currentPlayer}: `)
-  const x = move[0] - 1
-  const y = move[2] - 1
 
   if (!isMoveFormatValid(GRID_SIZE, move)) {
     console.log(
@@ -26,8 +24,11 @@ while (!winner) {
     continue
   }
 
+  const [userX, userY] = move.split(",")
+  const [x, y] = [userX - 1, userY - 1]
+
   if (isSquareTaken(grid, x, y)) {
-    console.log(`The square at [${x + 1},${y + 1}] is taken`)
+    console.log(`The square at [${userX},${userY}] is taken`)
     continue
   }
 
